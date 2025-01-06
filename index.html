@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+
+  <body>
+    <!-- all the pages -->
+    <div id="links">
+      <div><a href="index.html">Home</a></div>
+      <div><a href="applied.html">Applied Jobs</a></div>
+      <div><a href="bookmark.html">Bookmarks</a></div>
+    </div>
+    <!-- form for filling the details -->
+    <form action="" id="form">
+      <h2>Enter Your Application Details</h2>
+      <input placeholder="Enter Name" id="name" name="name" type="text" />
+      <input placeholder="Enter email" type="email" name="email" id="email" />
+      <select name="role" id="role">
+        <option value="FSD">FSD</option>
+        <option value="Backend">Backend</option>
+        <option value="Frontend">Frontend</option>
+      </select>
+      <input id="salary"
+        type="number"
+        placeholder="Enter expected salary in lakhs per annum "
+      />
+      <input id="submit" type="submit" name="submit" value="Submit" />
+    </form>
+  </body>
+
+  <!-- javascript code -->
+  <script>
+    // to store the details when submit button is clicked
+    document.querySelector("form").addEventListener("submit",applyJob);
+    
+    let jobArr=JSON.parse(localStorage.getItem("jobsList")) || [];
+    function applyJob(){
+      window.location.reload();
+      event.preventDefault();
+      let obj={
+        name:document.querySelector("#name").value,
+        email:document.querySelector("#email").value,
+        role:document.querySelector("#role").value,
+        salary:document.querySelector("#salary").value
+      };
+      jobArr.push(obj);
+      localStorage.setItem("jobsList",JSON.stringify(jobArr));
+    }
+   
+    
+  </script>
+</html>
